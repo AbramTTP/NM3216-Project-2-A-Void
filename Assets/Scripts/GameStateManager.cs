@@ -6,19 +6,22 @@ public class GameStateManager : MonoBehaviour {
     public bool isAlive = true; // The amount of health the player starts the game with.
     public bool gameOver = false;
     public GameObject CanvasObject;
+    public GameObject Explosion;
 
     void start()
     {
         isAlive = true;
         gameOver = false;
-        CanvasObject = GameObject.FindGameObjectWithTag("Canvas");
+        CanvasObject = GameObject.FindGameObjectWithTag("CanvasObject");
+        Explosion = GameObject.Find("Explosion");
     }
 
     void OnCollisionEnter2D(Collision2D col)
     {
-        if (col.gameObject.tag == "Whirlpool")
+        if (col.gameObject.tag == "Black Hole")
         {
-            Death();
+            Instantiate(Explosion, transform.position, transform.rotation);         
+            Object.Destroy(this.gameObject);
         }
     }
 
@@ -26,8 +29,6 @@ public class GameStateManager : MonoBehaviour {
     {
         // Set the death flag so this function won't be called again.
         isAlive = false;
-
-        CanvasObject.SetActive(true);
 
         // Turn off any remaining shooting effects.
         //playerShooting.DisableEffects();

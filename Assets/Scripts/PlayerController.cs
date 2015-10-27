@@ -4,19 +4,20 @@ using System.Collections.Generic;
 
 public class PlayerController : MonoBehaviour {
 
-    public float fluidRotationSpeed = 1f;
-    public float duckTranslationSpeed = 1f;
+    public float fluidRotationSpeed = 0.2f;
+    public float spaceshipTranslationSpeed = 0.15f;
+    public float spaceshipTotalDamagedThrustSpeed = 0.7f;
 
-    public GameObject whirlpool;
-    public GameObject pond;
-    public GameObject duck;
+    public GameObject blackHole;
+    public GameObject outerRim;
+    public GameObject spaceship;
     public List<GameObject> obstacles;
 
     void start()
     {
-        whirlpool = GameObject.Find("Whirlpool");
-        pond = GameObject.Find("Pond");
-        duck = GameObject.Find("Player");
+        blackHole = GameObject.Find("Black Hole");
+        outerRim = GameObject.Find("Outer Rim");
+        spaceship = GameObject.Find("Player");
         obstacles = new List<GameObject>();
     }
 
@@ -28,31 +29,39 @@ public class PlayerController : MonoBehaviour {
             fluidRotationSpeed = -fluidRotationSpeed;
         }
 
-        duck.transform.rotation = Quaternion.Euler(transform.rotation.eulerAngles.x, 0, 0);
+        spaceship.transform.rotation = Quaternion.Euler(transform.rotation.eulerAngles.x, 0, 0);
 
     }
     
     // Update is called once per frame
     void FixedUpdate () {
 
-        float moveHorizontal = Input.GetAxis("Horizontal");
-        float moveVertical = Input.GetAxis("Vertical");
-        Vector3 center = new Vector3(0, 0, 0);
+        if(spaceship.GetComponent<GameStateManager>().isAlive){
 
-        Vector3 translationVector = new Vector3(duckTranslationSpeed * moveHorizontal, duckTranslationSpeed * moveVertical, 0f);
-        duck.transform.Translate(translationVector);
+            float moveHorizontal = Input.GetAxis("Horizontal");
+            float moveVertical = Input.GetAxis("Vertical");
+            Vector3 center = new Vector3(0, 0, 0);
 
-        Vector3 rotation = new Vector3(0f, 0f, -(fluidRotationSpeed));
-        pond.transform.Rotate(rotation);
+            if (spaceshipTranslationSpeed < spaceshipTotalDamagedThrustSpeed){
+                spaceshipTranslationSpeed = spaceshipTotalDamagedThrustSpeed;
+            }
 
-        for (int i = 0; i < obstacles.Capacity; i++)
-        {
-            Vector3 vortexVector = obstacles[i].transform.position - center;
+            Vector3 translationVector = new Vector3(spaceshipTranslationSpeed * moveHorizontal, spaceshipTranslationSpeed * moveVertical, 0f);
+            spaceship.transform.Translate(translationVector);
 
-            vortexVector = Quaternion.AngleAxis(-fluidRotationSpeed, Vector3.forward) * vortexVector;
+            Vector3 rotation = new Vector3(0f, 0f, -(fluidRotationSpeed));
+            outerRim.transform.Rotate(rotation);
 
-            if ((whirlpool.transform.position - obstacles[i].transform.position).sqrMagnitude <= 300.0f)
-                obstacles[i].transform.position = center + vortexVector;
+            for (int i = 0; i < obstacles.Capacity; i++)
+            {
+                Vector3 vortexVector = obstacles[i].transform.position - center;
+
+                vortexVector = Quaternion.AngleAxis(-fluidRotationSpeed, Vector3.forward) * vortexVector;
+
+                if ((blackHole.transform.position - obstacles[i].transform.position).sqrMagnitude <= 300.0f)
+                    obstacles[i].transform.position = center + vortexVector;
+            }
+
         }
 
     }

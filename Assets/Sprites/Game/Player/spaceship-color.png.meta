@@ -1,6 +1,6 @@
 fileFormatVersion: 2
 guid: 4e09a03634e6bd44fbbb7ab798084866
-timeCreated: 1445978757
+timeCreated: 1446094653
 licenseType: Free
 TextureImporter:
   fileIDToRecycleName:
@@ -63,78 +63,78 @@ TextureImporter:
         serializedVersion: 2
         x: 0
         y: 0
-        width: 106
-        height: 121
+        width: 53
+        height: 61
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
     - name: spaceship-color_1
       rect:
         serializedVersion: 2
-        x: 106
+        x: 53
         y: 0
-        width: 106
-        height: 121
+        width: 53
+        height: 61
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
     - name: spaceship-color_2
       rect:
         serializedVersion: 2
-        x: 212
+        x: 106
         y: 0
-        width: 106
-        height: 121
+        width: 53
+        height: 61
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
     - name: spaceship-color_3
       rect:
         serializedVersion: 2
-        x: 318
+        x: 159
         y: 0
-        width: 106
-        height: 121
+        width: 53
+        height: 61
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
     - name: spaceship-color_4
       rect:
         serializedVersion: 2
-        x: 424
+        x: 212
         y: 0
-        width: 106
-        height: 121
+        width: 53
+        height: 61
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
     - name: spaceship-color_5
       rect:
         serializedVersion: 2
-        x: 530
+        x: 265
         y: 0
-        width: 106
-        height: 121
+        width: 53
+        height: 61
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
     - name: spaceship-color_6
       rect:
         serializedVersion: 2
-        x: 636
+        x: 318
         y: 0
-        width: 106
-        height: 121
+        width: 53
+        height: 61
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
     - name: spaceship-color_7
       rect:
         serializedVersion: 2
-        x: 742
+        x: 371
         y: 0
-        width: 106
-        height: 121
+        width: 53
+        height: 61
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}

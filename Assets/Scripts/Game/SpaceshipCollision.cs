@@ -7,12 +7,14 @@ public class SpaceshipCollision : MonoBehaviour {
     public float thrustDecreasePerCollision = 0.02f;
     public GameObject spaceship;
     public GameObject inputManager;
+    public bool isMultiply;
 
     // Use this for initialization
     void Start()
     {
         spaceship = GameObject.Find("Player");
         inputManager = GameObject.Find("InputManager");
+        isMultiply = false;
     }
 
     void OnCollisionEnter2D(Collision2D col)
@@ -28,7 +30,7 @@ public class SpaceshipCollision : MonoBehaviour {
             spaceshipVelocity = inputManager.GetComponent<PlayerController>().spaceshipTranslationSpeed;
             spaceshipTotalDamageVelocity = inputManager.GetComponent<PlayerController>().spaceshipTotalDamagedThrustSpeed;
 
-            if (gravityFactor == 0.0f)
+            if (gravityFactor == 0.0f || !isMultiply)
                 gravityFactor += gravityIncreasePerCollision;
             else
                 gravityFactor *= gravityIncreasePerCollision;

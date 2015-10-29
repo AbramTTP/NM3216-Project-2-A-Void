@@ -1,6 +1,6 @@
 fileFormatVersion: 2
 guid: 5b3db64483646cf4bbfbec284d337765
-timeCreated: 1445978777
+timeCreated: 1446094664
 licenseType: Free
 TextureImporter:
   fileIDToRecycleName:
@@ -58,28 +58,28 @@ TextureImporter:
         serializedVersion: 2
         x: 0
         y: 0
-        width: 106
-        height: 121
+        width: 53
+        height: 61
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
     - name: spaceship-dim_1
       rect:
         serializedVersion: 2
-        x: 106
+        x: 53
         y: 0
-        width: 106
-        height: 121
+        width: 53
+        height: 61
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
     - name: spaceship-dim_2
       rect:
         serializedVersion: 2
-        x: 212
+        x: 106
         y: 0
-        width: 106
-        height: 121
+        width: 53
+        height: 61
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}

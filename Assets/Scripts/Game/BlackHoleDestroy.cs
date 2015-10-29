@@ -25,9 +25,10 @@ public class BlackHoleDestroy : MonoBehaviour {
         else if (col.gameObject.tag == "Meteroid")
         {
             Instantiate(Explosion, col.gameObject.transform.position, col.gameObject.transform.rotation);
-            Destroy(col.gameObject);        
-            //PlayerController PC = (PlayerController)GameObject.Find("InputManager").GetComponent("PlayerController");
-            //PC.obstacles.Remove(col.gameObject);
+            Destroy(col.gameObject);
+
+            MeteroidManager MM = (MeteroidManager)GameObject.Find("MeteroidManager").GetComponent("MeteroidManager");
+            MM.spawnedMeteroids.Remove(col.gameObject);
         }
         else if (col.gameObject.tag == "Player")
         {

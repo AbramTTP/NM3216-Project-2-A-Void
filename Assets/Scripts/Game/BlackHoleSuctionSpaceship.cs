@@ -25,10 +25,10 @@ public class BlackHoleSuctionSpaceship : MonoBehaviour {
         blackHole = GameObject.Find("Black Hole");
         gravityFactor = 0.0f;
         delay = 60.0f;
-        gravityIncPerDelay = 2.0f;
-        gravityMaxInGame = 60.0f;
-        blackHoleSizeIncPerDelay = 0.2f;
-        blackHoleMaxScaleInGame = 1.5f;
+        gravityIncPerDelay = 5.0f;
+        gravityMaxInGame = 80.0f;
+        blackHoleSizeIncPerDelay = 1.0f;
+        blackHoleMaxScaleInGame = 4.0f;
     }
 
     void FixedUpdate()

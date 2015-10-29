@@ -8,8 +8,10 @@ public class ObstacleManager : MonoBehaviour {
     public GameObject player;
     public GameObject[] obstacles;
 
-    public float spawnTime = 10.0f;
-    public float delay = 60.0f;
+    public float spawnTime = 2.0f;
+    public float decrementDelay = 15.0f;
+    public float spawnTimeDec = 0.25f;
+    public float minSpawnTime = 0.25f;
 
 	// Use this for initialization
 	void Start () 
@@ -46,8 +48,8 @@ public class ObstacleManager : MonoBehaviour {
 
     void FixedUpdate()
     {
-        if(Time.timeSinceLevelLoad  % delay == 0.0f && Time.timeSinceLevelLoad  != 0.0f && spawnTime > 0.75f){
-            spawnTime -= 0.25f;
+        if(Time.timeSinceLevelLoad  % decrementDelay == 0.0f && Time.timeSinceLevelLoad  != 0.0f && spawnTime > minSpawnTime){
+            spawnTime -= spawnTimeDec;
         }
     }
 

@@ -4,6 +4,7 @@ using System.Collections;
 public class BlackHoleSuctionSpaceship : MonoBehaviour {
 
     public GameObject blackHole; // assign your planet GO in unity editor here
+
     public float gravityFactor; // then tune this value  in editor too
     public float delay;
 

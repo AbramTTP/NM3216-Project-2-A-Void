@@ -6,6 +6,7 @@ public class UIManager : MonoBehaviour {
     public GameObject PauseMenuObject;
     public GameObject GameOverObject;
     public GameObject PromptQuitObject;
+
     public bool isGameOver;
     public bool isPaused; 
 

@@ -4,14 +4,14 @@ using System.Collections.Generic;
 
 public class PlayerController : MonoBehaviour {
 
-    public float fluidRotationSpeed = 0.2f;
-    public float spaceshipTranslationSpeed = 0.15f;
-    public float spaceshipTotalDamagedThrustSpeed = 0.7f;
-
     public GameObject BlackHole;
     public GameObject OuterRim;
     public GameObject Spaceship;
     public List<GameObject> Obstacles;
+
+    public float fluidRotationSpeed = 0.1f;
+    public float spaceshipTranslationSpeed = 0.15f;
+    public float spaceshipTotalDamagedThrustSpeed = 0.1f;
 
     void start()
     {

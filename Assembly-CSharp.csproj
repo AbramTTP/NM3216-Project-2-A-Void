@@ -50,6 +50,7 @@
      <Compile Include="Assets\Scripts\Game\BlackHoleSuctionSpaceship.cs" />
      <Compile Include="Assets\Scripts\Game\Camera2DFollow.cs" />
      <Compile Include="Assets\Scripts\Game\CameraFollow.cs" />
+     <Compile Include="Assets\Scripts\Game\MeteroidManager.cs" />
      <Compile Include="Assets\Scripts\Game\ObstacleManager.cs" />
      <Compile Include="Assets\Scripts\Game\PlatformerCharacter2D.cs" />
      <Compile Include="Assets\Scripts\Game\PlayerController.cs" />

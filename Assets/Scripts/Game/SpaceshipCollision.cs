@@ -3,10 +3,12 @@ using System.Collections;
 
 public class SpaceshipCollision : MonoBehaviour {
 
-    public float gravityIncreasePerCollision = 2.0f;
-    public float thrustDecreasePerCollision = 0.02f;
     public GameObject spaceship;
     public GameObject inputManager;
+
+    public float gravityIncreasePerCollision = 2.0f;
+    public float thrustDecreasePerCollision = 0.02f;
+
     public bool isMultiply;
 
     // Use this for initialization

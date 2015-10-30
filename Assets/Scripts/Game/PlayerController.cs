@@ -24,10 +24,10 @@ public class PlayerController : MonoBehaviour {
     void Update()
     {
 
-        if (Input.GetKeyDown("space"))
-        {
-            fluidRotationSpeed = -fluidRotationSpeed;
-        }
+        //if (Input.GetKeyDown("space"))
+        //{
+        //    fluidRotationSpeed = -fluidRotationSpeed;
+        //}
 
         if (Spaceship != null || !Spaceship.Equals(null))
         {

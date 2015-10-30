@@ -8,10 +8,10 @@ public class ObstacleManager : MonoBehaviour {
     public GameObject player;
     public GameObject[] obstacles;
 
-    public float spawnTime = 2.0f;
-    public float decrementDelay = 15.0f;
-    public float spawnTimeDec = 0.25f;
-    public float minSpawnTime = 0.25f;
+    public float spawnTime = 0.5f;
+    public float decrementDelay = 60.0f;
+    public float spawnTimeDec = 0.0f;
+    public float minSpawnTime = 0.5f;
 
 	// Use this for initialization
 	void Start () 

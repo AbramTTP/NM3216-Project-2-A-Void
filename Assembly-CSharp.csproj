@@ -51,23 +51,18 @@
      <Compile Include="Assets\Scripts\Game\Camera2DFollow.cs" />
      <Compile Include="Assets\Scripts\Game\CameraFollow.cs" />
      <Compile Include="Assets\Scripts\Game\MeteroidManager.cs" />
+     <Compile Include="Assets\Scripts\Game\ObstacleDestroy.cs" />
      <Compile Include="Assets\Scripts\Game\ObstacleManager.cs" />
      <Compile Include="Assets\Scripts\Game\PlatformerCharacter2D.cs" />
      <Compile Include="Assets\Scripts\Game\PlayerController.cs" />
      <Compile Include="Assets\Scripts\Game\SpaceshipCollision.cs" />
      <Compile Include="Assets\Scripts\Game\UIManager.cs" />
      <Compile Include="Assets\Scripts\Main Menu\MainMenuManager.cs" />
- <Reference Include="UnityEngine.Advertisements">
- <HintPath>C:/Program Files/Unity/Editor/Data/UnityExtensions/Unity/Advertisements/UnityEngine.Advertisements.dll</HintPath>
- </Reference>
  <Reference Include="UnityEngine.UI">
  <HintPath>C:/Program Files/Unity/Editor/Data/UnityExtensions/Unity/GUISystem/UnityEngine.UI.dll</HintPath>
  </Reference>
  <Reference Include="UnityEngine.Networking">
  <HintPath>C:/Program Files/Unity/Editor/Data/UnityExtensions/Unity/Networking/UnityEngine.Networking.dll</HintPath>
- </Reference>
- <Reference Include="UnityEngine.Analytics">
- <HintPath>C:/Program Files/Unity/Editor/Data/UnityExtensions/Unity/UnityAnalytics/UnityEngine.Analytics.dll</HintPath>
  </Reference>
  <Reference Include="Mono.Cecil">
  <HintPath>C:/Program Files/Unity/Editor/Data/Managed/Mono.Cecil.dll</HintPath>

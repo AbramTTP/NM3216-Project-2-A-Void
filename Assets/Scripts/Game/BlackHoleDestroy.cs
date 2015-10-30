@@ -6,10 +6,14 @@ public class BlackHoleDestroy : MonoBehaviour {
     public GameObject Explosion;
     public GameObject GameOverObject;
 
+    public float gravityFactorIncrement;
+
     void start()
     {
         Explosion = GameObject.Find("Explosion");
         GameOverObject = GameObject.Find("GameOverMenuObject");
+
+        gravityFactorIncrement = 0.25f;
     }
 
     void OnCollisionEnter2D(Collision2D col)
@@ -21,6 +25,17 @@ public class BlackHoleDestroy : MonoBehaviour {
 
             PlayerController PC = (PlayerController)GameObject.Find("InputManager").GetComponent("PlayerController");           
             PC.Obstacles.Remove(col.gameObject);
+
+            for (int i = 0; i < PC.Obstacles.Capacity; i++)
+            {
+                PC.Obstacles[i].GetComponent<BlackHoleSuction>().gravityFactor += gravityFactorIncrement;
+            }
+
+            ObstacleManager OM = (ObstacleManager)GameObject.Find("ObstacleManager").GetComponent("ObstacleManager");
+            for (int i = 0; i < OM.obstacles.Length; i++)
+            {
+                OM.obstacles[i].GetComponent<BlackHoleSuction>().gravityFactor += gravityFactorIncrement;
+            }
         }
         else if (col.gameObject.tag == "Meteroid")
         {
@@ -29,6 +44,19 @@ public class BlackHoleDestroy : MonoBehaviour {
 
             MeteroidManager MM = (MeteroidManager)GameObject.Find("MeteroidManager").GetComponent("MeteroidManager");
             MM.spawnedMeteroids.Remove(col.gameObject);
+
+            PlayerController PC = (PlayerController)GameObject.Find("InputManager").GetComponent("PlayerController"); 
+
+            for (int i = 0; i < PC.Obstacles.Capacity; i++)
+            {
+                PC.Obstacles[i].GetComponent<BlackHoleSuction>().gravityFactor += gravityFactorIncrement;
+            }
+
+            ObstacleManager OM = (ObstacleManager)GameObject.Find("ObstacleManager").GetComponent("ObstacleManager");
+            for (int i = 0; i < OM.obstacles.Length; i++)
+            {
+                OM.obstacles[i].GetComponent<BlackHoleSuction>().gravityFactor += gravityFactorIncrement;
+            }
         }
         else if (col.gameObject.tag == "Player")
         {

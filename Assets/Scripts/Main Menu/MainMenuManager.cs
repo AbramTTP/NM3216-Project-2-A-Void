@@ -46,4 +46,30 @@ public class MainMenuManager : MonoBehaviour {
         }
 
 	}
+
+    public void PlayButton(int index)
+    {
+        Application.LoadLevel(index);
+    }
+
+    public void InstructionButton(GameObject UIObject)
+    {
+        UIObject.SetActive(true);
+        MainMenuObject.SetActive(false);
+    }
+
+    public void BackButton(GameObject UIObject)
+    {
+        UIObject.SetActive(false);
+        MainMenuObject.SetActive(true);
+    }
+
+    public void CreditButton()
+    {
+
+    }
+    public void QuitButton()
+    {
+        Application.Quit();
+    }
 }

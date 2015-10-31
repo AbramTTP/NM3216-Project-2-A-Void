@@ -95,4 +95,32 @@ public class UIManager : MonoBehaviour {
                 Application.LoadLevel(Application.loadedLevel);
         }
     }
+
+    public void YesButton()
+    {
+        Application.LoadLevel(0);
+    }
+
+    public void NoButton(GameObject UIObject)
+    {
+        UIObject.SetActive(false);
+    }
+
+    public void QuitButton(GameObject UIObject)
+    {
+        UIObject.SetActive(true);
+    }
+
+    public void ResumeButton(GameObject UIObject)
+    {
+        UIObject.SetActive(false);
+        Time.timeScale = 1.0f;
+        isPaused = false;
+    }
+
+    public void RetryButton()
+    {
+        Application.LoadLevel(1);
+    }
+
 }

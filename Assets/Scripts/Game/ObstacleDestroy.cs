@@ -6,14 +6,10 @@ public class ObstacleDestroy : MonoBehaviour {
     public GameObject Explosion;
     public GameObject GameOverObject;
 
-    public float rotationSpeedIncrement;
-
     void start()
     {
         Explosion = GameObject.Find("Explosion");
         GameOverObject = GameObject.Find("GameOverMenuObject");
-
-        rotationSpeedIncrement = 0.001f;
     }
 
     void OnCollisionEnter2D(Collision2D col)
@@ -21,15 +17,18 @@ public class ObstacleDestroy : MonoBehaviour {
         if (col.gameObject.tag == "Obstacle")
         {
             Instantiate(Explosion, col.gameObject.transform.position, col.gameObject.transform.rotation);
+            AudioSource sound = Explosion.GetComponent<AudioSource>();
+            sound.Play();
             Destroy(col.gameObject);
 
             PlayerController PC = (PlayerController)GameObject.Find("InputManager").GetComponent("PlayerController");
             PC.Obstacles.Remove(col.gameObject);
-            PC.fluidRotationSpeed += rotationSpeedIncrement;
         }
         else if (col.gameObject.tag == "Meteroid")
         {
             Instantiate(Explosion, col.gameObject.transform.position, col.gameObject.transform.rotation);
+            AudioSource sound = Explosion.GetComponent<AudioSource>();
+            sound.Play();
             PlayerController PC = (PlayerController)GameObject.Find("InputManager").GetComponent("PlayerController");
             PC.Obstacles.Remove(this.gameObject);
 
@@ -38,6 +37,8 @@ public class ObstacleDestroy : MonoBehaviour {
         else if (col.gameObject.tag == "Player")
         {
             Instantiate(Explosion, col.gameObject.transform.position, col.gameObject.transform.rotation);
+            AudioSource sound = Explosion.GetComponent<AudioSource>();
+            sound.Play();
             Destroy(col.gameObject);
 
             PlayerController PC = (PlayerController)GameObject.Find("InputManager").GetComponent("PlayerController");

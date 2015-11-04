@@ -9,9 +9,9 @@ public class ObstacleManager : MonoBehaviour {
     public GameObject[] obstacles;
 
     public float spawnTime = 0.5f;
-    public float decrementDelay = 60.0f;
-    public float spawnTimeDec = 0.0f;
     public float minSpawnTime = 0.5f;
+
+    float exactTime;
 
 	// Use this for initialization
 	void Start () 
@@ -22,7 +22,8 @@ public class ObstacleManager : MonoBehaviour {
         obstacles = GameObject.FindGameObjectsWithTag("Obstacle");
         spawnPoints = GameObject.FindGameObjectsWithTag("Spawner");
         blackHole = GameObject.FindGameObjectWithTag("Black Hole");
-        
+
+        exactTime = 0.0f;
     }
 	
 	// Spawn obstacles
@@ -48,8 +49,16 @@ public class ObstacleManager : MonoBehaviour {
 
     void FixedUpdate()
     {
-        if(Time.timeSinceLevelLoad  % decrementDelay == 0.0f && Time.timeSinceLevelLoad  != 0.0f && spawnTime > minSpawnTime){
-            spawnTime -= spawnTimeDec;
+        if (Time.timeSinceLevelLoad - exactTime >= 1.0f)
+        {
+            exactTime += 1.0f;
+            CancelInvoke("Spawn");
+            InvokeRepeating("Spawn", 0.0f, spawnTime);         
+        }
+
+        if (spawnTime < minSpawnTime)
+        {
+            spawnTime = minSpawnTime;
         }
     }
 

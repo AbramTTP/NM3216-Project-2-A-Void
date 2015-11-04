@@ -14,19 +14,21 @@ public class MeteroidManager : MonoBehaviour {
     public GameObject warningSign;
 
     public List<GameObject> spawnedMeteroids;
-
-    public float minTimeBetweenSpawn = 0.5f;
-    public float minTimeFirstSpawn = 15.0f;
-    public float maxSpawnTime = 60.0f;
-    public float finalMaxSpawnTime = 30.0f;
-    public float maxSpawnTimeDecrement = 2.5f;
-    public float decrementDelay = 15.0f;
+    
+    public float minTimeFirstSpawn = 5.0f;
+    public float minSpawnInterval = 0.5f;
+    public float maxSpawnInterval = 10.0f;
+    public float maxSpawnIntervalRegenerateTime = 5.0f;
     public float warningSignDuration = 2.0f;
+
+    float exactTime;
+    bool isTicked;
 
     // Use this for initialization
     void Start()
     {
-        InvokeRepeating("Spawn", (float)(Random.Range(minTimeFirstSpawn, maxSpawnTime)), (float)(Random.Range(minTimeBetweenSpawn, maxSpawnTime)));
+
+        InvokeRepeating("Spawn", (float)(Random.Range(minTimeFirstSpawn, maxSpawnInterval)), (float)(Random.Range(minSpawnInterval, maxSpawnInterval)));
         
         player = GameObject.FindGameObjectWithTag("Player");
         meteroids = GameObject.Find("meteroid");
@@ -37,6 +39,9 @@ public class MeteroidManager : MonoBehaviour {
 
         spawnPoints = spawnPoints.OrderBy(go => go.name).ToArray();
         warningPoints = warningPoints.OrderBy(go => go.name).ToArray();
+
+        exactTime = 0.0f;
+        isTicked = false;
     }
 
     // Spawn meteroids
@@ -46,12 +51,25 @@ public class MeteroidManager : MonoBehaviour {
         if (player == null) //If player dies
             return;
 
-        int spawnPointIndex = Random.Range(0, spawnPoints.Length);
+        int spawnPointIndex = 0;
+        float minDistanceToPlayer = 999999.0f;
+
+        for (int i = 0; i < spawnPoints.Length; i++)
+        {
+            float distanceToPlayer = Vector3.Distance(spawnPoints[i].transform.position, player.transform.position);
+            if (distanceToPlayer < minDistanceToPlayer)
+            {
+                minDistanceToPlayer = distanceToPlayer;
+                spawnPointIndex = i;
+            }
+        }
 
         GameObject meteroid = GameObject.Instantiate(meteroids, spawnPoints[spawnPointIndex].transform.position, spawnPoints[spawnPointIndex].transform.rotation) as GameObject;
 
         GameObject warning = GameObject.Instantiate(warningSign, warningPoints[spawnPointIndex].transform.position, warningPoints[spawnPointIndex].transform.rotation) as GameObject;
         Destroy(warning, warningSignDuration);
+        AudioSource sound = meteroid.GetComponent<AudioSource>();
+        sound.Play();
 
         Vector3 direction = blackHole.transform.position - meteroid.transform.position;
         direction = direction.normalized;
@@ -64,9 +82,17 @@ public class MeteroidManager : MonoBehaviour {
 
     void FixedUpdate()
     {
-        if (Time.timeSinceLevelLoad % decrementDelay == 0.0f && Time.timeSinceLevelLoad != 0.0f && maxSpawnTime > finalMaxSpawnTime)
+        if (Time.timeSinceLevelLoad - exactTime >= 1.0f)
         {
-            maxSpawnTime -= maxSpawnTimeDecrement;
+            exactTime += 1.0f;
+            isTicked = true;
+        }
+
+        if(exactTime % maxSpawnIntervalRegenerateTime == 0.0f && isTicked){
+            maxSpawnInterval = (float)(Random.Range(minSpawnInterval, maxSpawnInterval));
+            CancelInvoke("Spawn");
+            InvokeRepeating("Spawn", (float)(Random.Range(minTimeFirstSpawn, maxSpawnInterval)), (float)(Random.Range(minSpawnInterval, maxSpawnInterval)));
+            isTicked = !isTicked;
         }
     }
 }

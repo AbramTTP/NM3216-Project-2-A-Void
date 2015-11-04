@@ -24,11 +24,6 @@ public class PlayerController : MonoBehaviour {
     void Update()
     {
 
-        //if (Input.GetKeyDown("space"))
-        //{
-        //    fluidRotationSpeed = -fluidRotationSpeed;
-        //}
-
         if (Spaceship != null || !Spaceship.Equals(null))
         {
             Spaceship.transform.rotation = Quaternion.Euler(transform.rotation.eulerAngles.x, 0, 0);

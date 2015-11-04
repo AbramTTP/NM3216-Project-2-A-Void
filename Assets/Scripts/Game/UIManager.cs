@@ -68,7 +68,6 @@ public class UIManager : MonoBehaviour {
             if ((isPaused && PauseMenuObject.activeSelf) || (isGameOver && GameOverObject.activeSelf))
             {
                 PromptQuitObject.SetActive(true);
-                GameOverObject.SetActive(false);
             }
         }
 
@@ -98,17 +97,27 @@ public class UIManager : MonoBehaviour {
 
     public void YesButton()
     {
+        Time.timeScale = 1.0f;
         Application.LoadLevel(0);
     }
 
-    public void NoButton(GameObject UIObject)
+    public void NoButtonShow(GameObject UIObject)
+    {
+        UIObject.SetActive(true);
+    }
+    public void NoButtonHide(GameObject UIObject)
     {
         UIObject.SetActive(false);
     }
 
-    public void QuitButton(GameObject UIObject)
+    public void QuitButtonShow(GameObject UIObject)
     {
         UIObject.SetActive(true);
+    }
+
+    public void QuitButtonHide(GameObject UIObject)
+    {
+        UIObject.SetActive(false);
     }
 
     public void ResumeButton(GameObject UIObject)

@@ -4,6 +4,7 @@ using System.Collections;
 public class BlackHoleDestroy : MonoBehaviour {
 
     public GameObject Explosion;
+    public GameObject InstantiateExplosion;
     public GameObject GameOverObject;
 
     public float obstacleGravityFactorIncrement;
@@ -13,7 +14,7 @@ public class BlackHoleDestroy : MonoBehaviour {
     void start()
     {
         Explosion = GameObject.Find("Explosion");
-        GameOverObject = GameObject.Find("GameOverMenuObject");
+        GameOverObject = GameObject.Find("GameOverBlackHoleMenuObject");
 
         obstacleGravityFactorIncrement = 0.25f;
         obstacleSpawnTimeDecrement = 0.01f;
@@ -23,10 +24,11 @@ public class BlackHoleDestroy : MonoBehaviour {
     {
         if (col.gameObject.tag == "Obstacle")
         {
-            Instantiate(Explosion, col.gameObject.transform.position, col.gameObject.transform.rotation);
+            InstantiateExplosion = (GameObject)Instantiate(Explosion, col.gameObject.transform.position, col.gameObject.transform.rotation);
             AudioSource sound = Explosion.GetComponent<AudioSource>();
             sound.Play();
             Destroy(col.gameObject);
+            Destroy(InstantiateExplosion, 1);
 
             PlayerController PC = (PlayerController)GameObject.Find("InputManager").GetComponent("PlayerController");           
             PC.Obstacles.Remove(col.gameObject);
@@ -42,15 +44,16 @@ public class BlackHoleDestroy : MonoBehaviour {
                 OM.obstacles[i].GetComponent<BlackHoleSuction>().gravityFactor += obstacleGravityFactorIncrement;
             }
         }
-        else if (col.gameObject.tag == "Meteroid")
+        else if (col.gameObject.tag == "Meteorite")
         {
-            Instantiate(Explosion, col.gameObject.transform.position, col.gameObject.transform.rotation);
+            InstantiateExplosion = (GameObject) Instantiate(Explosion, col.gameObject.transform.position, col.gameObject.transform.rotation);
             AudioSource sound = Explosion.GetComponent<AudioSource>();
             sound.Play();
             Destroy(col.gameObject);
+            Destroy(InstantiateExplosion, 1);
 
-            MeteroidManager MM = (MeteroidManager)GameObject.Find("MeteroidManager").GetComponent("MeteroidManager");
-            MM.spawnedMeteroids.Remove(col.gameObject);
+            MeteoritesManager MM = (MeteoritesManager)GameObject.Find("meteoritesManager").GetComponent("MeteoritesManager");
+            MM.spawnedmeteorites.Remove(col.gameObject);
 
             if (isSpeedUpPlanet)
             {
@@ -77,10 +80,11 @@ public class BlackHoleDestroy : MonoBehaviour {
         }
         else if (col.gameObject.tag == "Player")
         {
-            Instantiate(Explosion, col.gameObject.transform.position, col.gameObject.transform.rotation);
+            InstantiateExplosion = (GameObject) Instantiate(Explosion, col.gameObject.transform.position, col.gameObject.transform.rotation);
             AudioSource sound = Explosion.GetComponent<AudioSource>();
             sound.Play();
             Destroy(col.gameObject);
+            Destroy(InstantiateExplosion, 1);
             GameOverObject.SetActive(true);
             UIManager UIM = (UIManager)GameObject.Find("MenuControllerObject").GetComponent<UIManager>();
             UIM.isGameOver = true;

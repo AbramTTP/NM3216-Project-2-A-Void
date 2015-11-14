@@ -3,24 +3,35 @@ using System.Collections;
 
 public class MainMenuManager : MonoBehaviour {
 
+    public GameObject StoryObject;
     public GameObject MainMenuObject;
     public GameObject InstructionsObject;
     public GameObject CreditsObject;
 
 	// Use this for initialization
 	void Start () {
+        StoryObject = GameObject.Find("StoryObject");
+        StoryObject.SetActive(true);
         MainMenuObject = GameObject.Find("MainMenuObject");
+        MainMenuObject.SetActive(false);
         InstructionsObject = GameObject.Find("InstructionsObject");
         InstructionsObject.SetActive(false);
         CreditsObject = GameObject.Find("CreditObject");
         CreditsObject.SetActive(false);
-
 	}
 	
 	// Update is called once per frame
 	void Update () {
 
-        if (MainMenuObject.activeSelf)
+        if (StoryObject.activeSelf)
+        {
+            if (Input.GetKeyDown(KeyCode.Return) || Input.GetKeyDown(KeyCode.E))
+            {
+                StoryObject.SetActive(false);
+                MainMenuObject.SetActive(true);
+            }
+        }
+        else if (MainMenuObject.activeSelf)
         {
             if (Input.GetKeyDown(KeyCode.S))
             {
@@ -81,6 +92,6 @@ public class MainMenuManager : MonoBehaviour {
     }
     public void QuitButton()
     {
-        Application.Quit();
+       Application.Quit();
     }
 }

@@ -4,7 +4,8 @@ using System.Collections;
 public class UIManager : MonoBehaviour {
 
     public GameObject PauseMenuObject;
-    public GameObject GameOverObject;
+    public GameObject GameOverBlackHoleObject;
+    public GameObject GameOverCollisionObject;
     public GameObject PromptQuitObject;
 
     public bool isGameOver;
@@ -13,11 +14,13 @@ public class UIManager : MonoBehaviour {
     // Use this for initialization
     void Start()
     {
-        GameOverObject = GameObject.Find("GameOverMenuObject");
+        GameOverBlackHoleObject = GameObject.Find("GameOverBlackHoleMenuObject");
+        GameOverCollisionObject = GameObject.Find("GameOverCollisionMenuObject");
         PromptQuitObject = GameObject.Find("PromptQuitMenuObject");
         PauseMenuObject = GameObject.Find("PauseMenuObject");
         PromptQuitObject.SetActive(false);
-        GameOverObject.SetActive(false);
+        GameOverBlackHoleObject.SetActive(false);
+        GameOverCollisionObject.SetActive(false);
         PauseMenuObject.SetActive(false);
 
         isGameOver = false;
@@ -65,7 +68,7 @@ public class UIManager : MonoBehaviour {
 
         if (Input.GetKeyDown(KeyCode.Q))
         {
-            if ((isPaused && PauseMenuObject.activeSelf) || (isGameOver && GameOverObject.activeSelf))
+            if ((isPaused && PauseMenuObject.activeSelf) || (isGameOver && (GameOverBlackHoleObject.activeSelf || GameOverCollisionObject.activeSelf)))
             {
                 PromptQuitObject.SetActive(true);
             }
@@ -84,13 +87,13 @@ public class UIManager : MonoBehaviour {
         {
             PromptQuitObject.SetActive(false);
             if(isGameOver){
-                GameOverObject.SetActive(true);
+                GameOverBlackHoleObject.SetActive(true);
             }
         }
 
         if (Input.GetKeyDown(KeyCode.R))
         {
-            if (isGameOver && GameOverObject.activeSelf && !PromptQuitObject.activeSelf)
+            if (isGameOver && (GameOverBlackHoleObject.activeSelf || GameOverCollisionObject.activeSelf) && !PromptQuitObject.activeSelf)
                 Application.LoadLevel(Application.loadedLevel);
         }
     }
